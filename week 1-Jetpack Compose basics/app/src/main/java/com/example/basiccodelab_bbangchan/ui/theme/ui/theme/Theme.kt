@@ -1,29 +1,22 @@
-package com.example.basiccodelab_bbangchan.ui.theme
+package com.example.basiccodelab_bbangchan.ui.theme.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = Navy,
-    onPrimary = Chartreuse,
-    surface = Blue,
-    onSurface = Navy
-    //primaryVariant = Purple700,
-    //secondary = Teal200
+    primary = Purple200,
+    primaryVariant = Purple700,
+    secondary = Teal200
 )
 
 private val LightColorPalette = lightColors(
-    //primary = Purple500,
+    primary = Purple500,
     primaryVariant = Purple700,
-    secondary = Teal200,
-    surface = Blue,
-    onSurface = Color.White,
-    primary = LightBlue,
-    onPrimary =Navy
+    secondary = Teal200
+
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -45,8 +38,8 @@ fun BasicCodeLab_BBangChanTheme(
         LightColorPalette
     }
 
-    MaterialTheme( 
-       colors = colors,
+    MaterialTheme(
+        colors = colors,
         typography = Typography,
         shapes = Shapes,
         content = content

@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicCodeLab_BBangChan">
         <activity
+            android:name=".ui.theme.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.BasicCodeLab_BBangChan.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
