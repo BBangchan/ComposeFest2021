@@ -16,22 +16,57 @@
 
 package com.codelabs.state.todo
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class TodoViewModel : ViewModel() {
 
-    private var _todoItems = MutableLiveData(listOf<TodoItem>())
-    val todoItems: LiveData<List<TodoItem>> = _todoItems
+    // private state
+    private var currentEditPosition by mutableStateOf(-1)
+    // state : todoItems
+    //private var _todoItems = MutableLiveData(listOf<TodoItem>())
+    var todoItems = mutableListOf<TodoItem>() // LiveData와 같은 동작을 수행한다.
+        private set
 
+    //state
+    val currentEditItem: TodoItem?
+        get() = todoItems.getOrNull(currentEditPosition)
+
+    // event : addItem
     fun addItem(item: TodoItem) {
-        _todoItems.value = _todoItems.value!! + listOf(item)
+        //_todoItems.value = _todoItems.value!! + listOf(item)
+        todoItems.add(item)
     }
 
+    // event : removeItem
     fun removeItem(item: TodoItem) {
-        _todoItems.value = _todoItems.value!!.toMutableList().also {
-            it.remove(item)
+//        _todoItems.value = _todoItems.value!!.toMutableList().also {
+//            it.remove(item)
+        todoItems.remove(item)
+        onEditDone() // 항목을 제거할 때 editor를 열지마라.
+    }
+
+    // event : onEditItemSelected
+    fun onEditItemSelected(item: TodoItem) {
+        currentEditPosition = todoItems.indexOf(item)
+    }
+
+    fun onEditDone(){
+        currentEditPosition = -1
+    }
+
+    //event : onEditDone
+    fun onEditItemChange(item: TodoItem) {
+        val currentItem = requireNotNull(currentEditItem)
+        require(currentItem.id == item.id){
+            "You can only change an item with the same id as currentEditItem"
         }
+        todoItems[currentEditPosition] = item
     }
 }
+
