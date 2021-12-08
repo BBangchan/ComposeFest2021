@@ -21,10 +21,16 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.test.SemanticsNodeInteraction
-import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.*
 import androidx.test.platform.app.InstrumentationRegistry
 import java.io.FileOutputStream
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.text.toUpperCase
+import com.example.compose.rally.ui.components.RallyTopAppBar
+import org.junit.Rule
+import org.junit.Test
+import java.util.*
 
 /**
  * Simple on-device screenshot comparator that uses golden images present in
@@ -78,3 +84,4 @@ private fun Bitmap.compare(other: Bitmap) {
 private fun Bitmap.getRow(pixels: IntArray, column: Int) {
     this.getPixels(pixels, 0, width, 0, column, width, 1)
 }
+
